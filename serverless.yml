@@ -1,0 +1,38 @@
+service: huggingface-on-serverless-sagemaker
+
+provider:
+  name: aws
+  region: eu-west-1 
+
+functions:
+  huggingface:
+    handler: lambda_handler.py
+    # 2 minutes before we throw a timeout
+    timeout: 120
+    # have 1 hot lambda available
+    provisionedConcurrency: 1
+    memorySize: 128 
+    events:
+      - http:
+          path: prediction
+          method: post
+    environment:
+      SAGEMAKER_ENDPOINT_NAME: !GetAtt SageMakerEndpoint.EndpointName
+
+resources:
+  Resources:
+    SageMakerEndpointConfig:
+      Type: AWS::SageMaker::EndpointConfig
+      Properties:
+        ProductionVariants:
+          - ModelName: huggingface-pytorch-inference-2022-01-31-19-47-22-752
+            VariantName: SageMakerModel
+            ServerlessConfig:
+              MaxConcurrency: 1
+              MemorySizeInMB: 1024
+
+    SageMakerEndpoint:
+      Type: AWS::SageMaker::Endpoint
+      Properties:
+        EndpointConfigName: !GetAtt SageMakerEndpointConfig.EndpointConfigName
+        EndpointName: huggingface-serverless-sagemaker-endpoint
