@@ -27,13 +27,11 @@ resources:
       Type: AWS::SageMaker::EndpointConfig
       Properties:
         ProductionVariants:
-          - ModelName: huggingface-pytorch-inference-2022-01-31-19-47-22-752
-            InitialInstanceCount: 1
-            InitialVariantWeight: 1.0
+          - ModelName: huggingface-pytorch-inference-2022-02-01-14-42-42-444
             VariantName: SageMakerModel
             ServerlessConfig:
               MaxConcurrency: 1
-              MemorySizeInMB: 1024
+              MemorySizeInMB: 4096
 
     SageMakerEndpoint:
       Type: AWS::SageMaker::Endpoint
