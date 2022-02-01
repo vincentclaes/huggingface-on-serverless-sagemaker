@@ -7,11 +7,10 @@ sagemaker_endpoint_name = os.environ["SAGEMAKER_ENDPOINT_NAME"]
 
 def handler(event, context):
 
-    data = json.loads(event["body"])["data"]
-    print(f"making a prediction on the text: {data}")
+    print(f"making a prediction on the text: {event['body']}")
     
     response = runtime_client.invoke_endpoint(
-        Body=json.dumps(data),
+        Body=event["body"],
         EndpointName=sagemaker_endpoint_name,
         Accept="application/json",
         ContentType="application/json",
