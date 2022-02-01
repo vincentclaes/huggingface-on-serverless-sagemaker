@@ -30,7 +30,6 @@ resources:
           - ModelName: huggingface-pytorch-inference-2022-01-31-19-47-22-752
             InitialInstanceCount: 1
             InitialVariantWeight: 1.0
-            InstanceType: ml.m5.xlarge
             VariantName: SageMakerModel
             ServerlessConfig:
               MaxConcurrency: 1
