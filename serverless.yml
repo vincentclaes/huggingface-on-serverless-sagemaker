@@ -28,7 +28,7 @@ resources:
       Properties:
         ProductionVariants:
           - ModelName: huggingface-pytorch-inference-2022-04-25-14-18-11-101
-            InitialInstanceCount: 1
+#             InitialInstanceCount: 1
             InitialVariantWeight: 1.0
             VariantName: SageMakerModel
             ServerlessConfig:
