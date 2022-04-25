@@ -9,14 +9,14 @@ def handler(event, context):
 
     print(f"making a prediction on the text: {event['body']}")
     
-    response = runtime_client.invoke_endpoint(
+    prediction = runtime_client.invoke_endpoint(
         Body=event["body"],
         EndpointName=sagemaker_endpoint_name,
         Accept="application/json",
         ContentType="application/json",
     )
     
-    print(f"prediction: {response}")
+    print(f"prediction: {prediction}")
 
     return {
         'statusCode': 200,
