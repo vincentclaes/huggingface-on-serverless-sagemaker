@@ -27,7 +27,7 @@ resources:
       Type: AWS::SageMaker::EndpointConfig
       Properties:
         ProductionVariants:
-          - ModelName: huggingface-pytorch-inference-2022-04-25-14-18-11-101
+          - ModelName: huggingface-pytorch-inference-2022-04-26-11-26-46-198
 #             InitialInstanceCount: 1
             InitialVariantWeight: 1.0
             VariantName: SageMakerModel
